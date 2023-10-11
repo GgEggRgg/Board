@@ -1,6 +1,6 @@
 package board.BulletinBoard.repository;
 
-import board.BulletinBoard.entity.Member;
+import board.BulletinBoard.domain.Member;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,7 +31,7 @@ public class MemberRepositoryTest {
         //then
         Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
         Assertions.assertThat(findMember.getUsername()).isEqualTo(member.getUsername());
-
+        Assertions.assertThat(findMember).isEqualTo(member);
      }
 
 }

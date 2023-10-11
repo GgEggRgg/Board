@@ -1,6 +1,6 @@
 package board.BulletinBoard.repository;
 
-import board.BulletinBoard.entity.Member;
+import board.BulletinBoard.domain.Member;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;

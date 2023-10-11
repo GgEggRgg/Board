@@ -1,4 +1,4 @@
-package board.BulletinBoard.entity;
+package board.BulletinBoard.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

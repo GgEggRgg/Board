@@ -22,10 +22,14 @@ public class BoardController {
 
     //게시글 조회
     @GetMapping("list")
-    public String list(Model model){
-        List<BoardDto> boardList = boardService.getBoardlist();
+    public String list(Model model,
+                       @RequestParam(value="page", defaultValue = "1") Integer pageNum){
+        List<BoardDto> boardList = boardService.getBoardlist(pageNum);
+        Integer[] pageList = boardService.getPageList(pageNum);
 
         model.addAttribute("boardList", boardList);
+        model.addAttribute("pageList", pageList);
+
         return "list";
     }
 
@@ -64,5 +68,13 @@ public class BoardController {
     public String delete(@PathVariable("id") Long id){
         boardService.deletePost(id);
         return "redirect:/";
+    }
+
+    //게시글 검색하기
+    @GetMapping("/board/search")
+    public String search(@RequestParam(value="keyword") String keyword, Model model){
+        List<BoardDto> boardDtoList = boardService.searchPosts(keyword);
+        model.addAttribute("boardList", boardDtoList);
+        return "list";
     }
 }

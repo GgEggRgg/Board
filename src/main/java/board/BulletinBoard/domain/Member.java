@@ -1,17 +1,34 @@
 package board.BulletinBoard.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Getter @Setter
+@Table(name = "member")
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
     @Id @GeneratedValue
     private Long id;
-    private String username;
 
+    @Column(length = 20, nullable = false)
+    private String email;
+
+    @Column(length = 100, nullable = false)
+    private String password;
+
+    @Column(length = 20, nullable = false)
+    private String nickname;
+
+    @Builder
+    public Member(Long id, String email, String password, String nickname){
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.nickname = nickname;
+    }
 
 }

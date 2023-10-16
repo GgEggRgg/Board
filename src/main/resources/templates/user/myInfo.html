@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>My Info</title>
+</head>
+<body>
+    <h1>내정보 확인 페이지입니다.</h1>
+    <hr>
+    <p>닉네임 : <span th:text="${memberDto.nickname}"></span></p>
+    <p>이메일 : <span th:text="${memberDto.email}"></span></p>
+    <a th:href="@{'/'}">메인으로 이동</a>
+</body>
+</html>

@@ -39,6 +39,7 @@
         </tr>
         </tbody>
     </table>
+    <hr>
 
     <!-- 페이징 !-->
     <div>
@@ -46,6 +47,7 @@
             <a th:href="@{'/list?page=' + ${pageNum}}">[[${pageNum}]]</a>
         </span>
     </div>
+    <hr>
 
     <!-- 검색 !-->
     <form action="/board/search" method="GET">

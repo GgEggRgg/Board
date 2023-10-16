@@ -17,7 +17,7 @@ public class BoardController {
     //게시글 등록페이지로 이동
     @GetMapping("post")
     public String write(){
-        return "write";
+        return "board/write";
     }
 
     //게시글 조회
@@ -30,7 +30,7 @@ public class BoardController {
         model.addAttribute("boardList", boardList);
         model.addAttribute("pageList", pageList);
 
-        return "list";
+        return "board/list";
     }
 
     //게시글 등록
@@ -45,7 +45,7 @@ public class BoardController {
     public String detail(@PathVariable("id") Long id, Model model){
         BoardDto boardDTO = boardService.getPost(id);
         model.addAttribute("boardDto", boardDTO);
-        return "detail";
+        return "board/detail";
     }
 
     //게시글 수정페이지
@@ -53,28 +53,28 @@ public class BoardController {
     public String edit(@PathVariable("id") Long id, Model model){
         BoardDto boardDTO = boardService.getPost(id);
         model.addAttribute("boardDto", boardDTO);
-        return "update";
+        return "board/update";
     }
 
     //게시글 수정하기
-    @PutMapping("/post/edit/{id}")
+    @PutMapping("post/edit/{id}")
     public String update(BoardDto boardDTO){
         boardService.savePost(boardDTO);
         return "redirect:/";
     }
 
     //게시글 삭제하기
-    @DeleteMapping("/post/{id}")
+    @DeleteMapping("post/{id}")
     public String delete(@PathVariable("id") Long id){
         boardService.deletePost(id);
         return "redirect:/";
     }
 
     //게시글 검색하기
-    @GetMapping("/board/search")
+    @GetMapping("board/search")
     public String search(@RequestParam(value="keyword") String keyword, Model model){
         List<BoardDto> boardDtoList = boardService.searchPosts(keyword);
         model.addAttribute("boardList", boardDtoList);
-        return "list";
+        return "board/list";
     }
 }

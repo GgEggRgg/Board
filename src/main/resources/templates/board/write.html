@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>board</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
     <form  action="/post" method="post">
-    제목 : <input type="text" name="title"> <br>
-    작성자 : <input type="text" name="writer"> <br>
-    <textarea name="content"></textarea><br>
+        <label for="title">제목 : </label>
+        <input id="title" type="text" name="title" placeholer="title">
+        <p>작성자 : <span th:text="${nickname}"></span></p>
+    <textarea name="content" placeholder="board content"></textarea><br>
 
     <input type="submit" value="등록">
     </form>

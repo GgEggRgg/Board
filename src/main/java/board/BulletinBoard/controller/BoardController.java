@@ -1,22 +1,29 @@
 package board.BulletinBoard.controller;
 
 import board.BulletinBoard.BoardDto;
+import board.BulletinBoard.MemberDto;
 import board.BulletinBoard.service.BoardService;
+import board.BulletinBoard.service.MemberService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
 @AllArgsConstructor
 public class BoardController {
     private BoardService boardService;
+    private MemberService memberService;
 
     //게시글 등록페이지로 이동
     @GetMapping("post")
-    public String write(){
+    public String write(Principal principal, Model model){
+        String email = principal.getName();
+        MemberDto member = memberService.findByEmail(email);
+        model.addAttribute("nickname", member.getNickname());
         return "board/write";
     }
 
@@ -35,7 +42,10 @@ public class BoardController {
 
     //게시글 등록
     @PostMapping("post")
-    public String write(BoardDto boardDTO){
+    public String write(Principal principal, BoardDto boardDTO){
+        String email = principal.getName();
+        MemberDto member = memberService.findByEmail(email);
+        boardDTO.setWriter(member.getNickname());
         boardService.savePost(boardDTO);
         return "redirect:/";
     }

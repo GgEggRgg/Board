@@ -25,6 +25,7 @@ public class BoardService {
 
     //게시글 저장
     public Long savePost(BoardDto boardDTO){
+
         return boardRepository.save(boardDTO.toEntity()).getId();
     }
 

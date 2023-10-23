@@ -3,6 +3,7 @@ package board.BulletinBoard.service;
 import board.BulletinBoard.BoardDto;
 import board.BulletinBoard.domain.Board;
 import board.BulletinBoard.repository.BoardRepository;
+import board.BulletinBoard.repository.MemberRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,6 +21,7 @@ import java.util.Optional;
 public class BoardService {
 
     private BoardRepository boardRepository;
+    private MemberRepository memberRepository;
     private static final int BLOCK_PAGE_NUM_COUNT = 5; //블럭 페이지 번호 수
     private static final int PAGE_POST_COUNT = 4; //한 페이지 게시글 수
 
@@ -91,9 +93,15 @@ public class BoardService {
     }
 
     //게시글 검색
-    public List<BoardDto> searchPosts(String keyword){
-        List<Board> boards = boardRepository.findByTitleContaining(keyword);
+    public List<BoardDto> searchPosts(String keyword, String category){
         List<BoardDto> boardDtoList = new ArrayList<>();
+
+        List<Board> boards = switch (category) {
+            case "title" -> boardRepository.findByTitleContaining(keyword);
+            case "content" -> boardRepository.findByContentContaining(keyword);
+            case "writer" -> boardRepository.findByWriter(keyword);
+            default -> new ArrayList<>();
+        };
 
         if(boards.isEmpty()) return boardDtoList;
 

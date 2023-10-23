@@ -47,7 +47,7 @@ public class BoardController {
         MemberDto member = memberService.findByEmail(email);
         boardDTO.setWriter(member.getNickname());
         boardService.savePost(boardDTO);
-        return "redirect:/";
+        return "redirect:/list";
     }
 
     //게시글 상세보기
@@ -70,20 +70,21 @@ public class BoardController {
     @PutMapping("post/edit/{id}")
     public String update(BoardDto boardDTO){
         boardService.savePost(boardDTO);
-        return "redirect:/";
+        return "redirect:/list";
     }
 
     //게시글 삭제하기
     @DeleteMapping("post/{id}")
     public String delete(@PathVariable("id") Long id){
         boardService.deletePost(id);
-        return "redirect:/";
+        return "redirect:/list";
     }
 
     //게시글 검색하기
     @GetMapping("board/search")
-    public String search(@RequestParam(value="keyword") String keyword, Model model){
-        List<BoardDto> boardDtoList = boardService.searchPosts(keyword);
+    public String search(@RequestParam(value="keyword") String keyword,
+                         @RequestParam(value="category") String category,Model model){
+        List<BoardDto> boardDtoList = boardService.searchPosts(keyword, category);
         model.addAttribute("boardList", boardDtoList);
         return "board/list";
     }

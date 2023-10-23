@@ -5,9 +5,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-    <form  action="/post" method="post">
+    <form th:action="@{'/post'}" method="post">
         <label for="title">제목 : </label>
-        <input id="title" type="text" name="title" placeholer="title">
+        <input id="title" type="text" name="title" placeholder="title">
         <p>작성자 : <span th:text="${nickname}"></span></p>
     <textarea name="content" placeholder="board content"></textarea><br>
 

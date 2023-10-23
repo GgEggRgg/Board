@@ -35,10 +35,10 @@ public class SecurityConfig{
                 .loginPage("/user/login")
                 .defaultSuccessUrl("/user/login/result")
                 .permitAll());
-        http.logout((logout) -> logout
-                .logoutUrl("/user/logout/result")
-                        .logoutSuccessUrl("/user/logout/result")
-                        .invalidateHttpSession(true));
+        http.logout((logout) -> logout //기본 로그아웃은 post매핑을 받기때문에 href로 받으면 문제가 생긴다.
+                .logoutUrl("/user/logout")
+                .logoutSuccessUrl("/user/logout/result")
+                .invalidateHttpSession(true));
         http.exceptionHandling((exception) -> exception
                 .accessDeniedPage("/user/denied"));
         return http.build();

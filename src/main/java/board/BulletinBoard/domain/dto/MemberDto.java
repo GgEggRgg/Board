@@ -1,4 +1,4 @@
-package board.BulletinBoard;
+package board.BulletinBoard.domain.dto;
 
 import board.BulletinBoard.domain.Member;
 import lombok.*;

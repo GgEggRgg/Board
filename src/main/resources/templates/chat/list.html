@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>list</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/board.css}">
+</head>
+<body>
+    <table>
+        <tr th:each="room : ${chatRoomList}">
+            <td>
+                <a th:href="@{chatRoom(roomId=${room.roomId})}"
+                   th:text="${room.name}"></a>
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <a sec:authorize="isAuthenticated()" th:href="@{chat/room}">채팅방 만들기</a>
+</body>
+</html>

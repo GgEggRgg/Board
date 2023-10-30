@@ -1,6 +1,6 @@
 package board.BulletinBoard.controller;
 
-import board.BulletinBoard.MemberDto;
+import board.BulletinBoard.domain.dto.MemberDto;
 import board.BulletinBoard.service.MemberService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;

@@ -1,6 +1,6 @@
 package board.BulletinBoard.service;
 
-import board.BulletinBoard.MemberDto;
+import board.BulletinBoard.domain.dto.MemberDto;
 import board.BulletinBoard.domain.Member;
 import board.BulletinBoard.domain.Role;
 import board.BulletinBoard.repository.MemberRepository;

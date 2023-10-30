@@ -16,5 +16,6 @@
     <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{admin}">어드민</a>
     <hr>
     <a href="/list">게시판으로 이동</a>
+    <a sec:authorize="isAUthenticated()" th:href="@{chat/list}">채팅방으로 이동</a>
 </body>
 </html>

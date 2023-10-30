@@ -1,7 +1,7 @@
 package board.BulletinBoard.controller;
 
-import board.BulletinBoard.BoardDto;
-import board.BulletinBoard.MemberDto;
+import board.BulletinBoard.domain.dto.BoardDto;
+import board.BulletinBoard.domain.dto.MemberDto;
 import board.BulletinBoard.service.BoardService;
 import board.BulletinBoard.service.MemberService;
 import lombok.AllArgsConstructor;

@@ -1,6 +1,6 @@
 package board.BulletinBoard.service;
 
-import board.BulletinBoard.BoardDto;
+import board.BulletinBoard.domain.dto.BoardDto;
 import board.BulletinBoard.domain.Board;
 import board.BulletinBoard.repository.BoardRepository;
 import board.BulletinBoard.repository.MemberRepository;

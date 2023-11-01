@@ -30,9 +30,9 @@ public class StompChatController {
     public void enter(ChatMessageDetailDto message){
         message.setMessage(message.getWriter() + "님이 채팅방에 참여하였습니다.");
 
-        List<ChatMessageDetailDto> chatList = chatService.findAllChatByRoomId(message.getRoomId());
+        List<ChatMessage> chatList = chatService.findAllChatByRoomId(message.getRoomId());
         if(chatList != null){
-            for(ChatMessageDetailDto c : chatList){
+            for(ChatMessage c : chatList){
                 message.setWriter(c.getWriter());
                 message.setMessage(c.getMessage());
             }

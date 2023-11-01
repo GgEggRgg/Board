@@ -1,5 +1,6 @@
 package board.BulletinBoard.controller;
 
+import board.BulletinBoard.domain.ChatMessage;
 import board.BulletinBoard.domain.dto.ChatRoomDetailDto;
 import board.BulletinBoard.domain.dto.ChatRoomDto;
 import board.BulletinBoard.domain.dto.MemberDto;
@@ -28,7 +29,7 @@ public class RoomController {
     //채팅방 목록 조회
     @GetMapping(value = "chat/list")
     public String list(Model model){
-        List<ChatRoomDto> chatRoomList = chatService.getChatRoomList();
+        List<ChatRoomDetailDto> chatRoomList = chatService.getChatRoomList();
         model.addAttribute("chatRoomList", chatRoomList);
         return "chat/list";
     }
@@ -45,16 +46,21 @@ public class RoomController {
     //채팅방 개설
     @PostMapping(value = "chat/room")
     public String create(Principal principal, @RequestParam String roomName){
-        ChatRoomDto chatRoom = ChatRoomDto.create(principal.getName(), roomName);
-        Long roomId = chatService.saveChatRoom(chatRoom);
+        ChatRoomDto chatRoom = ChatRoomDto.create(roomName, principal.getName());
+        String roomId = chatService.saveChatRoom(chatRoom);
         return "redirect:/chat/"+roomId;
     }
 
     //채팅방 조회
-    @GetMapping(value = "chat/{id}")
-    public String detail(@PathVariable("id") Long id, Model model){
-        ChatRoomDetailDto chatRoomDetailDto = chatService.findRoomById(id);
-        model.addAttribute("chatRoomDto", chatRoomDetailDto);
+    @GetMapping(value = "chat/{roomId}")
+    public String detail(Principal principal, @PathVariable("roomId") String roomId,
+                         Model model){
+        MemberDto member = memberService.findByEmail(principal.getName());
+        ChatRoomDetailDto chatRoomDetailDto = chatService.findRoomByRoomId(roomId);
+        List<ChatMessage> messages = chatService.findAllChatByRoomId(roomId);
+        model.addAttribute("nickname", member.getNickname());
+        model.addAttribute("chatRoom", chatRoomDetailDto);
+        model.addAttribute("messages", messages);
         return "chat/detail";
     }
 

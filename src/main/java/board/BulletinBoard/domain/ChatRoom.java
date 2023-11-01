@@ -28,10 +28,11 @@ public class ChatRoom {
             cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ChatMessage> chatMessageList = new ArrayList<>();
 
-    public static ChatRoom toChatRoomEntity(String roomName, String roomId){
+    public static ChatRoom toChatRoomEntity(String roomId, String roomName, String createdBy){
         ChatRoom chatRoom = new ChatRoom();
-        chatRoom.setRoomName(roomName);
         chatRoom.setRoomId(roomId);
+        chatRoom.setRoomName(roomName);
+        chatRoom.setCreatedBy(createdBy);
         return chatRoom;
     }
 

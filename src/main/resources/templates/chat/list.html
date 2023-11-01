@@ -9,12 +9,12 @@
     <table>
         <tr th:each="room : ${chatRoomList}">
             <td>
-                <a th:href="@{chatRoom(roomId=${room.roomId})}"
-                   th:text="${room.name}"></a>
+                <a th:href="@{${room.roomId}}"
+                   th:text="${room.roomName}"></a>
             </td>
         </tr>
     </table>
     <hr>
-    <a sec:authorize="isAuthenticated()" th:href="@{chat/room}">채팅방 만들기</a>
+    <a sec:authorize="isAuthenticated()" th:href="@{room}">채팅방 만들기</a>
 </body>
 </html>
